@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -53,8 +54,8 @@ ROOT_URLCONF = 'meiduo_mall.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'BACKEND': 'django.template.backends.jinja2.Jinja2',
+        'DIRS': ['../templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -63,6 +64,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'environment':'meiduo_mall.utils.my_jinja2'
         },
     },
 ]
@@ -75,8 +77,12 @@ WSGI_APPLICATION = 'meiduo_mall.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'meiduo01',  # 数据库名，先前创建的
+        'USER': 'root',     # 用户名，可以自己创建用户
+        'PASSWORD': '12345678',  # 密码
+        'HOST': '127.0.0.1',  # mysql服务所在的主机ip
+        'PORT': '3306',         # mysql服务端口
     }
 }
 
