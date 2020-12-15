@@ -19,8 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="989e9b6d-bcb5-422f-aaca-ae9f0cdeee8f" name="Default Changelist" comment="configuration database">
+    <list default="true" id="989e9b6d-bcb5-422f-aaca-ae9f0cdeee8f" name="Default Changelist" comment="configuration redis">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meiduo_mall/meiduo_mall/settings/dev.py" beforeDir="false" afterPath="$PROJECT_DIR$/meiduo_mall/meiduo_mall/settings/dev.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607932990690</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="configuration redis">
+      <created>1607939982902</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1607939982902</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -195,9 +203,9 @@
       <screen x="72" y="27" width="1846" height="885" />
     </state>
     <state x="665" y="84" width="1022" height="737" key="SettingsEditor/72.27.1846.885@72.27.1846.885" timestamp="1607933560137" />
-    <state x="595" y="191" width="800" height="563" key="Vcs.Push.Dialog.v2" timestamp="1607934937838">
+    <state x="595" y="191" width="800" height="563" key="Vcs.Push.Dialog.v2" timestamp="1607940022332">
       <screen x="72" y="27" width="1846" height="885" />
     </state>
-    <state x="595" y="191" width="800" height="563" key="Vcs.Push.Dialog.v2/72.27.1846.885@72.27.1846.885" timestamp="1607934937838" />
+    <state x="595" y="191" width="800" height="563" key="Vcs.Push.Dialog.v2/72.27.1846.885@72.27.1846.885" timestamp="1607940022332" />
   </component>
 </project>
