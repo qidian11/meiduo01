@@ -9,12 +9,12 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -30,6 +30,11 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+# Application definition
+# 告诉pycharm apps作为导包路径, 当使用apps中的子应用的时候, 可以不需要写前缀,直接使用子应用名称即可
+import sys
+sys.path.insert(0,os.path.join(BASE_DIR,'apps'))
+# print(sys.path) #导包路径
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -38,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'users', # 展开时候就是下面的形式
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +62,7 @@ ROOT_URLCONF = 'meiduo_mall.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.jinja2.Jinja2',
-        'DIRS': ['../templates'],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -64,7 +71,20 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-            'environment':'meiduo_mall.utils.my_jinja2'
+            'environment':'meiduo_mall.utils.my_jinja2.environment'
+        },
+    },
+{
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ]
         },
     },
 ]
@@ -145,7 +165,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
 # configuration logging
 
 LOGGING = {
@@ -162,10 +182,10 @@ LOGGING = {
         },
     },
     'filters': {
-        'special': {
-            '()': 'project.logging.SpecialFilter',
-            'foo': 'bar',
-        },
+        # 'special': {
+        #     '()': 'project.logging.SpecialFilter',
+        #     'foo': 'bar',
+        # },
         'require_debug_true': {
             '()': 'django.utils.log.RequireDebugTrue',
         },
@@ -180,7 +200,7 @@ LOGGING = {
         'mail_admins': {
             'level': 'ERROR',
             'class': 'django.utils.log.AdminEmailHandler',
-            'filters': ['special']
+            'filters': ['require_debug_true']
         }
     },
     'loggers': {
@@ -196,7 +216,11 @@ LOGGING = {
         'myproject.custom': {
             'handlers': ['console', 'mail_admins'],
             'level': 'INFO',
-            'filters': ['special']
+            'filters': ['require_debug_true']
         }
     }
 }
+
+
+# 设置自定义的模型类
+AUTH_USER_MODEL = 'users.USER'
