@@ -2,7 +2,7 @@ var vm = new Vue({
     el: '#app',
     // 修改Vue变量的读取语法，避免和django模板语法冲突
     delimiters: ['[[', ']]'],
-    data: {
+    data:  {
         host: host,
         error_name: false,
         error_password: false,
@@ -52,7 +52,7 @@ var vm = new Vue({
             // 生成一个编号 : 严格一点的使用uuid保证编号唯一， 不是很严谨的情况下，也可以使用时间戳
             this.image_code_id = this.generateUUID();
             // 设置页面中图片验证码img标签的src属性
-            this.image_code_url = this.host + "/image_codes/" + this.image_code_id + "/";
+            this.image_code_url = this.host + "/code/image_codes/" + this.image_code_id + "/";
             console.log(this.image_code_url);
         },
         // 检查用户名
@@ -171,13 +171,14 @@ var vm = new Vue({
             }
 
             // 向后端接口发送请求，让后端发送短信验证码
-            var url = this.host + '/sms_codes/' + this.mobile + '/?image_code=' + this.image_code + '&image_code_id=' + this.image_code_id;
+            var url = this.host + '/code/sms_codes/' + this.mobile + '/?image_code=' + this.image_code + '&image_code_id=' + this.image_code_id;
             axios.get(url, {
                 responseType: 'json'
             })
                 .then(response => {
                     // 表示后端发送短信成功
                     if (response.data.code == '0') {
+                        console.log(response.data.sms_code)
                         // 倒计时60秒，60秒后允许用户再次点击发送短信验证码的按钮
                         var num = 60;
                         // 设置一个计时器
