@@ -15,7 +15,6 @@ class ImageCodeView(View):
         # 1.获取图片验证码的值与图片
         _,text,image_data = captcha.generate_captcha()
         print(text)
-        print(image_data)
         # 2.将图片验证码的值与uuid存入redis
         redis_conn = get_redis_connection('code')
         redis_conn.set(uuid,text,60)
@@ -38,7 +37,6 @@ class SmsCodeView(View):
         redis_conn = get_redis_connection('code')
         image_text = redis_conn.get(image_code_id)
         if image_text:
-            print(image_text)
             if image_code.upper() != image_text.decode().upper():
                 return http.HttpResponseForbidden('图片验证码错误')
         else:

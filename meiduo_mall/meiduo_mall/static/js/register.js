@@ -66,7 +66,7 @@ var vm = new Vue({
             }
             // 检查重名
             if (this.error_name == false) {
-                var url = this.host + '/usernames/' + this.username + '/count/';
+                var url = this.host + '/users/usernames/' + this.username + '/count/';
                 axios.get(url, {
                     responseType: 'json'
                 })
@@ -110,7 +110,7 @@ var vm = new Vue({
                 this.error_phone = true;
             }
             if (this.error_phone == false) {
-                var url = this.host + '/mobiles/' + this.mobile + '/count/';
+                var url = this.host + '/users/mobiles/' + this.mobile + '/count/';
                 axios.get(url, {
                     responseType: 'json'
                 })

@@ -9,6 +9,19 @@ from .models import User
 
 import re
 
+
+class CheckUsernameView(View):
+    def get(self,request,username):
+        count = User.objects.filter(username=username).count()
+        return http.JsonResponse({'count':count})
+
+
+class CheckMobileView(View):
+    def get(self,request,mobile):
+        count = User.objects.filter(mobile=mobile).count()
+        return http.JsonResponse({'count': count})
+
+
 class RegisterView(View):
     def get(self,request):
         return render(request,'register.html')
